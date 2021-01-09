@@ -32,6 +32,8 @@ print('d - ', d[0:3])
 print('d - ', d[2:])
 print('d - ', e[-1][1:3])
 
+
+
 # 리스트 연산
 
 print(c+d)

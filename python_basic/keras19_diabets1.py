@@ -55,7 +55,7 @@ from sklearn.metrics import r2_score
 R2 = r2_score(y_test, y_predict)
 print('R2: ', R2)
 
-
+# 1번 파일
 # loss, mae:  3547.997802734375 47.434669494628906
 # RMSE:  59.565078350614904
 # R2:  0.45331641394795696

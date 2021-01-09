@@ -4,20 +4,15 @@
 
 import numpy as np
 
-#1 데이터 주고
 from tensorflow.keras.datasets import boston_housing
-(train_data, train_target), (test_data, test_target) = boston_housing.load_data()
 
-x_train = train_data
-y_train = train_target
-x_test = test_data
-y_test = test_target
+(x_train, y_train), (x_test, y_test) = boston_housing.load_data()
 
 from sklearn.model_selection import train_test_split
 x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, train_size=0.8, random_state=66)
 
-print(x_train.shape) #(404, 13)
-#모델 구성
+print(x_train.shape)
+
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Input
 
@@ -34,20 +29,17 @@ output1 = Dense(1)(dense1)
 
 model = Model(inputs=input1, outputs=output1)
 
-#컴파일, 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 
 from tensorflow.keras.callbacks import EarlyStopping
 early_stopping = EarlyStopping(monitor='loss', patience=30, mode='min')
 model.fit(x_train, y_train, epochs=1000, batch_size=8, validation_data=(x_val, y_val), verbose=1, callbacks=[early_stopping])
 
-#평가, 예측
 loss, mae = model.evaluate(x_test, y_test, batch_size=1)
 print('loss, mae: ', loss, mae)
 
 y_predict = model.predict(x_test)
 
-#RMSE, R2
 from sklearn.metrics import mean_squared_error
 def RMSE(y_test, y_predict):
     return np.sqrt(mean_squared_error(y_test, y_predict))

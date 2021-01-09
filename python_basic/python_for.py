@@ -132,5 +132,15 @@ for n in range(2,10):
     for n1 in range(1,10):
        print('{:4d}'.format(n*n1), end='')
     print()
-    
-     
+
+
+
+# 변환 예제
+
+name2 = 'aceman'
+
+print(reversed(name2))
+
+print(list(reversed(name2)))
+print(tuple(reversed(name2)))
+print(set(reversed(name2))) # 집합 - 순서x 
