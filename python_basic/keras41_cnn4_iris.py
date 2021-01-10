@@ -12,12 +12,10 @@ y = datasets.target
 
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state = 66 ) 
-
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 66 ) 
 
 print(x.shape)
 print(y.shape)
-
 
 from sklearn.preprocessing import MinMaxScaler
 
@@ -25,7 +23,6 @@ scaler = MinMaxScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
-
 
 
 # 데이터 전처리
