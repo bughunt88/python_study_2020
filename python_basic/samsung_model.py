@@ -2,15 +2,19 @@ import io
 import pandas as pd
 import numpy as np
 
-from google.colab import drive
-drive.mount('/content/drive')
+#from google.colab import drive
+#drive.mount('/content/drive')
 
 # 데이터 변수
-size = 6 #30
+size = 5 #30
 
 
-total_data = np.load('/content/drive/My Drive/samsung_data.npy')
-total_kodex_data = np.load('/content/drive/My Drive/kodex_data.npy')
+#total_data = np.load('/content/drive/My Drive/samsung_data.npy')
+#total_kodex_data = np.load('/content/drive/My Drive/kodex_data.npy')
+
+total_data = np.load('./samsung_data.npy')
+total_kodex_data = np.load('./kodex_data.npy')
+
 
 y_data = total_data
 
@@ -91,11 +95,11 @@ from tensorflow.keras.models import Sequential, Model, load_model
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Dense, Flatten, Dropout,Input,Activation, LSTM
 
 
-model = load_model('/content/drive/MyDrive/check_point_best.h5')
+#model = load_model('/content/drive/MyDrive/check_point_best.h5')
+model = load_model('./check_point_best.h5')
+
 
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
-
-#model = load_model('./samsung/samsung_model_v2.h5')
 
 
 #평가, 예측
@@ -124,4 +128,9 @@ y_predict = model.predict([x_predict,kodex_x_predict])
 
 
 print(y_predict)
+
+#loss, mae:  9997190.0 2357.630126953125
+#RMSE:  3161.833
+#R2:  0.8881030596933368
+#[[89722.375 89887.71 ]]
 

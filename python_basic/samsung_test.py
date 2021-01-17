@@ -152,23 +152,23 @@ model.add(Dense(2))
 '''
 
 input1 = Input(shape=(x_train.shape[1],x_train.shape[2]))
-model1 = Conv1D(filters=32, kernel_size=1, activation='relu')(input1)
+model1 = Conv1D(filters=16, kernel_size=1, activation='relu')(input1)
 model1 = MaxPooling1D(pool_size=2)(model1)
-model1 = LSTM(16, activation='relu')(model1)
+model1 = LSTM(8, activation='relu')(model1)
 #model1 = Dense(2)(model1)
 
 input2 = Input(shape=(kodex_train.shape[1],kodex_train.shape[2]))
-model2 = Conv1D(filters=32, kernel_size=1, activation='relu')(input2)
+model2 = Conv1D(filters=16, kernel_size=1, activation='relu')(input2)
 model2 = MaxPooling1D(pool_size=2)(model2)
-model2 = LSTM(16, activation='relu')(model2)
+model2 = LSTM(8, activation='relu')(model2)
 #model2 = Dense(2)(model2)
 
 
 # concatenate
 merge1 = concatenate([model1, model2])
-model3 = Dense(16, activation='relu')(merge1)
-model3 = Dense(8, activation='relu')(model3)
-model3 = Dense(4, activation='relu')(model3)
+model3 = Dense(32, activation='relu')(merge1)
+model3 = Dense(16, activation='relu')(model3)
+
 
 
 
@@ -182,7 +182,7 @@ model = Model(inputs=[input1,input2], outputs=output1)
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
-early_stopping = EarlyStopping(monitor='loss', patience=10, mode='auto')
+early_stopping = EarlyStopping(monitor='loss', patience=5, mode='auto')
 
 savepath = '/content/drive/My Drive/check_point.h5'
 
